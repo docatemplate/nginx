@@ -54,7 +54,7 @@
         }
       },
       "spec": {
-        "host": "${NAMESPACE}-${APPLICATION_DOMAIN}",
+        "host": "{.spec.metadata.namespace}.${APPLICATION_DOMAIN}",
         "to": {
           "kind": "Service",
           "name": "${NAME}"
