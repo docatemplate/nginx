@@ -4,7 +4,7 @@
   "metadata": {
     "name": "nginx-example",
     "annotations": {
-      "openshift.io/display-name": "Nginx HTTP server and a reverse proxy",
+      "openshift.io/display-name": "Cloud+ Template: Nginx HTTP server",
       "description": "An example Nginx HTTP server and a reverse proxy (nginx) application that serves static content. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/nginx-ex/blob/master/README.md.",
       "tags": "quickstart,nginx",
       "iconClass": "icon-nginx",
@@ -54,7 +54,7 @@
         }
       },
       "spec": {
-        "host": "${APPLICATION_DOMAIN}",
+        "host": "${NAMESPACE}-${APPLICATION_DOMAIN}",
         "to": {
           "kind": "Service",
           "name": "${NAME}"
@@ -265,7 +265,15 @@
       "name": "APPLICATION_DOMAIN",
       "displayName": "Application Hostname",
       "description": "The exposed hostname that will route to the nginx service, if left blank a value will be defaulted.",
+      "required": true,
       "value": ""
+    },
+    {
+      "name": "ROUTE_LABEL",
+      "displayName": "Route Domain",
+      "description": "The way to expose your nginx service (intranet or internet), if left blank internet will be defaulted.",
+      "required": true,
+      "value": "internet"
     },
     {
       "name": "GITHUB_WEBHOOK_SECRET",
